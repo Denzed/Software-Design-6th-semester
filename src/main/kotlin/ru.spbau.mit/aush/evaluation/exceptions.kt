@@ -20,3 +20,9 @@ class CommandEvaluationFailedException(
         """.trimMargin(),
         cause
 )
+
+class DirectoryNotFoundException(message: String) : Exception(message)
+
+class FileIsNotDirectoryException(message: String) : Exception(message)
+
+class TooManyArgumentsException(message: String) : Exception(message)
