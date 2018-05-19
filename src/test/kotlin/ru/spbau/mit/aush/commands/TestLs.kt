@@ -17,6 +17,7 @@ class TestLs : TestCommand("ls") {
             |build.gradle
             |diagram.uml
             |.gradle
+            |ArchReview.md
             |build
             |.git
             |gradlew.bat
@@ -50,6 +51,7 @@ class TestLs : TestCommand("ls") {
             |build.gradle
             |diagram.uml
             |.gradle
+            |ArchReview.md
             |build
             |.git
             |gradlew.bat
