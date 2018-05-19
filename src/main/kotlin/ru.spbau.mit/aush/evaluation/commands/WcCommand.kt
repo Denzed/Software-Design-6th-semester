@@ -55,14 +55,19 @@ internal object WcCommand : Command() {
             0 -> environment.io.input
                     .calculateStats()
                     .toPrintStream(printStream)
-            1 -> File(args[0])
+            1 ->
+                environment.userDir
+                    .resolve(args[0]).toFile()
                     .calculateStats()
                     .toPrintStream(printStream, args[0])
             2 -> {
                 var total = Stats(0, 0, 0)
 
                 for (filename in args) {
-                    val fileStats = File(filename).calculateStats()
+                    val fileStats = environment.userDir
+                            .resolve(filename)
+                            .toFile()
+                            .calculateStats()
                     fileStats.toPrintStream(printStream, filename)
                     total += fileStats
                 }

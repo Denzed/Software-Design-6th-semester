@@ -20,3 +20,18 @@ class CommandEvaluationFailedException(
         """.trimMargin(),
         cause
 )
+
+/**
+ * Represents exception, when directory is not found during cd command
+ */
+class DirectoryNotFoundException(message: String) : Exception(message)
+
+/**
+ * Represents exception, when file is not a file during cd command
+ */
+class FileIsNotDirectoryException(message: String) : Exception(message)
+
+/**
+ * Represents exception, when passed more than 1 argument to cd command
+ */
+class TooManyArgumentsException(message: String) : Exception(message)
