@@ -21,15 +21,15 @@ internal object LsCommand : Command() {
         } else {
             for (arg in args) {
                 val directory = Paths.get(arg)
-                if (directory.isAbsolute) {
-                    lsMessage += getFilesMessage(directory.toFile())
+                lsMessage += if (directory.isAbsolute) {
+                    getFilesMessage(directory.toFile())
                 } else {
                     val resolvedDirectory = environment.userDir.resolve(directory).toFile()
 
                     if (resolvedDirectory.exists()) {
-                        lsMessage += getFilesMessage(resolvedDirectory)
+                        getFilesMessage(resolvedDirectory)
                     } else {
-                        lsMessage += notExistsMessage(resolvedDirectory)
+                        notExistsMessage(resolvedDirectory)
                     }
                 }
             }
