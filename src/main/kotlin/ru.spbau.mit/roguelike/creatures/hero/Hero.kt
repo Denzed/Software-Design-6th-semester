@@ -73,9 +73,8 @@ abstract class Hero(
      * @inheritDoc
      */
     override fun unequipItem(slot: Equipment.Slot) {
-        val item = internalEquipment[slot] ?: return
+        val item = internalEquipment.remove(slot) ?: return
         internalBackpack.add(item)
-        internalEquipment.remove(slot)
         recalculateStats()
     }
 

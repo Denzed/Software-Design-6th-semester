@@ -42,6 +42,8 @@ class BasicStats(
         stats[type] = newValue
     }
 
+    fun copy(): BasicStats = BasicStats() + this
+
     /**
      * Adds stat to another
      * @param other stats to add
@@ -51,7 +53,7 @@ class BasicStats(
     operator fun plus(other: BasicStats): BasicStats =
             BasicStats(
                     other.stats.entries.fold(
-                            stats,
+                            stats.toMutableMap(),
                             { cur, (type,value) ->
                                 cur[type] = cur[type] ?: 0 + value
                                 cur
