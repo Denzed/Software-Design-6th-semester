@@ -10,6 +10,8 @@ private val gameModes = mapOf<String,Pair<String,GameUI>>(
         "cli" to ("CLI" to CLIGameUI)
 )
 
+private const val defaultGameMode = "cli"
+
 /**
  * Usage message for main function
  */
@@ -18,7 +20,9 @@ private val usageMessage: String by lazy {
             .appendln("Usage:")
             .appendln(
                     gameModes.toList().joinToString("\n") {
-                        "${it.first} for ${it.second.first} game mode"
+                        val defaultSuffix = if (it.first == defaultGameMode) " [default]" else ""
+
+                        "${it.first} for ${it.second.first} game mode$defaultSuffix"
                     }
             )
             .toString()
@@ -40,17 +44,21 @@ private fun printUsage(additionalMessage: String = "") {
  */
 fun main(args: Array<String>) {
     when {
-        args.isEmpty() -> {
-            printUsage("Game mode expected")
-        }
         args.size > 1  -> {
             printUsage("Too many arguments")
         }
         else           -> {
-                gameModes[args[0]]
+                val gameMode =
+                        if (args.isEmpty()) {
+                            println("No game mode supplied. Using default: \"$defaultGameMode\"")
+                            defaultGameMode
+                        } else {
+                            args.first()
+                        }
+                gameModes[gameMode]
                         ?.second
                         ?.main(args.drop(1).toTypedArray())
-                        ?: printUsage("Unknown game mode \"${args[0]}\"")
+                        ?: printUsage("Unknown game mode \"$gameMode\"")
         }
     }
 }

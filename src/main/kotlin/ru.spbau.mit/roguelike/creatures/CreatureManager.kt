@@ -12,15 +12,15 @@ import kotlin.math.roundToInt
  */
 class CreatureManager(
         val hero: Hero,
-        otherCreatures: Map<Position,Set<Creature>>,
+        otherCreatures: Map<Position, Set<Creature>>,
         private val gameMap: GameMap
 ) {
-    private val internalCreatures: MutableMap<Position,MutableSet<Creature>>
+    private val internalCreatures: MutableMap<Position, MutableSet<Creature>>
 
     /**
      * Structure used to determine creatures in a specific cell
      */
-    val creatures: Map<Position,Set<Creature>>
+    val creatures: Map<Position, Set<Creature>>
         get() = internalCreatures
 
     /**

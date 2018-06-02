@@ -83,12 +83,6 @@ fun CLIGameUI.setupGameFieldScreen(gameRunner: GameRunner): Screen {
 
     components += gameField
 
-    val heroInventoryScreen = setupHeroInventoryScreen(
-            screen,
-            gameRunner
-    )
-    heroInventoryScreen.applyColorTheme(terminalColorTheme)
-
     var actionMode = ActionMode.MOVE
 
     val helpLayer = setupHelpLayer(
@@ -111,7 +105,14 @@ fun CLIGameUI.setupGameFieldScreen(gameRunner: GameRunner): Screen {
                             (heroCell as PassableCell).lyingItems
                     )
                 }
-                'I' -> heroInventoryScreen.activate()
+                'I' -> {
+                    val heroInventoryScreen = setupHeroInventoryScreen(
+                            screen,
+                            gameRunner
+                    )
+                    heroInventoryScreen.applyColorTheme(terminalColorTheme)
+                    heroInventoryScreen.activate()
+                }
                 'i' -> actionMode = ActionMode.INTERACT
                 'a' -> actionMode = ActionMode.ATTACK
                 'm' -> actionMode = ActionMode.MOVE
