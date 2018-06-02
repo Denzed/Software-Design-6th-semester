@@ -1,4 +1,3 @@
-# Software-Design-6th-semester
-Software Design practices and home assignments at SPbAU
+# HW06 Roguelike
 
-Each assignment has its own branch and, once completed, a PR.
+## Simple roguelike game implementation
